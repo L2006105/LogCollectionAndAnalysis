@@ -213,7 +213,7 @@ systemctl is-active open-vm-tools
 
 期望输出 `active`。
 
-### 第四步：确认 SSH 和 rsyslog 已设为开机自启
+### 第四步：确认 SSH 和 rsyslog 已设为开机自启 
 
 ```bash
 systemctl is-enabled ssh rsyslog
