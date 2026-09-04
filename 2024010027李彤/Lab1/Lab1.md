@@ -278,13 +278,13 @@ sudo tail -n 10 /var/log/syslog
 | Linux 版本 | Ubuntu 24.04 LTS Desktop amd64，安装介质为教师提供的 24.04.4 |符合 |
 | 虚拟机联网 | 具有 IP 和默认路由，IP 联通与 DNS 解析正常 |符合 |
 | 国内软件源 | 已换成国内镜像站，`sudo apt update` 成功 |符合 |
-| CPU、内存、存储 | 至少 2 核、4GB、40GB，且与宿主机档位匹配 |虚拟 CPU2 核，内存 5.7Gi，磁盘 20G |
+| CPU、内存、存储 | 至少 2 核、4GB、40GB，且与宿主机档位匹配 |虚拟 CPU2 核，内存 5.7Gi，磁盘 40GB |
 | VMware Tools、SSH、rsyslog | 软件包已安装，服务和功能检查通过 |符合 |
 
 简要说明你遇到的问题、解决方法，以及当前环境是否可以继续完成后续实验：
 
 > 填写：
-初始检查时发现 ssh 服务开机自启状态为 disabled。执行sudo systemctl enable ssh将 ssh 设置开机自启；配置完成后 ssh 服务处于 inactive 未运行状态，执行sudo systemctl start ssh启动 ssh 服务。修复后 ssh、rsyslog 均为 enabled 且 active，22 端口正常监听；使用 logger 写入测试日志，在/var/log/syslog成功捕获到Lab1 rsyslog test 2024010027litong测试记录；open‑vm‑tools 服务 active，拖动窗口边缘 Ubuntu 桌面分辨率可自动调整。软件包全部安装完毕，各项功能验证通过。虚拟机磁盘为 20G，不满足 40GB 最低磁盘要求。除去磁盘容量问题，其余验收项全部合格，可开展后续实验。
+初始检查时发现 ssh 服务开机自启状态为 disabled。执行sudo systemctl enable ssh将 ssh 设置开机自启；配置完成后 ssh 服务处于 inactive 未运行状态，执行sudo systemctl start ssh启动 ssh 服务。修复后 ssh、rsyslog 均为 enabled 且 active，22 端口正常监听；使用 logger 写入测试日志，在/var/log/syslog成功捕获到Lab1 rsyslog test 2024010027litong测试记录；open‑vm‑tools 服务 active，拖动窗口边缘 Ubuntu 桌面分辨率可自动调整。软件包全部安装完毕，各项功能验证通过。
 ---
 
 ## 截图要求
