@@ -1,4 +1,4 @@
-# Lab3：Linux 日志事件分析与对照
+#Lab3：Linux 日志事件分析与对照
 
 本实验承接 [Lab2：Linux 日志认识与查询](../Lab2/Lab2.md)，继续使用同一台 Ubuntu 虚拟机。开始前应能通过 SSH 登录 Ubuntu，并能读取 journal、`/var/log/syslog` 和 `/var/log/auth.log`。
 
@@ -84,7 +84,7 @@ Sep  8 10:11:04 ubuntu sshd[1204]: Failed password for student from 192.168.80.1
 whoami
 ```
 
-> 记录：本次使用的 Ubuntu 用户名为 _hcl_____。
+> 记录：本次使用的 Ubuntu 用户名为 hcl______。
 
 再查看当前 IP：
 
@@ -100,7 +100,7 @@ hostname -I
 hostname
 ```
 
-> 记录：本机主机名为 __hcl-VMware-Virtual-Platform____（即 4W1R 中 Where 的取值）。
+> 记录：本机主机名为 ____hcl-VMware-Virtual-Platform__（即 4W1R 中 Where 的取值）。
 
 然后在 Windows 中**重新打开一个 Git Bash 窗口**，将下面的用户名和 IP 换成刚才的真实值：
 
@@ -149,8 +149,8 @@ Windows / Git Bash                          Ubuntu 虚拟机
 
 | 认证事件 | 日志时间 | 尝试登录的账号 | 来源 IP | 结果关键词 | 日志来源 |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| 成功认证 |2026-09-21 21:12:39 | hcl|192.168.16.1 |Accepted password | /var/log/auth.log|
-| 失败认证 |2026-09-21 21:12:39 |hcl |192.168.16.1 |Failed password | /var/log/auth.log|
+| 成功认证 | 2026-09-21 21:12:39| hcl|192.168.16.1 | Failed password| /var/log/auth.log|
+| 失败认证 |2026-09-21 21:12:39 | hcl|192.168.16.1 | Accepted password| /var/log/auth.log|
 
 保存 `imgs/lab3_ssh_auth.png`，保留 journal 与 `auth.log` 的查询命令及本人成功、失败记录。两处输出**合起来**能辨认本人一次成功认证和一次失败认证即可，不要求每一处都同时出现两条记录。
 
@@ -199,8 +199,8 @@ sudo grep "student_id=你的学号" /var/log/syslog | tail -n 5
 | :--- | :--- |
 | journal 中是否查到 |是，成功读取到本次写入日志 |
 | `/var/log/syslog` 中是否查到 | 是，成功读取到本次写入日志|
-| 两处记录有哪些共同字段或正文 | 正文完全一致：student_id=2024010008 name = 何成龙 action=write_test result=success，标签 lab3_read 相同|
-| 两处输出的主要区别 | journal 输出携带更多系统元数据（进程 PID、系统字段）；syslog 文本日志格式简洁，只保留时间、主机、标签、消息正文|
+| 两处记录有哪些共同字段或正文 |正文完全一致：student_id=2024010008 name = 何成龙 action=write_test result=success，标签 lab3_read 相同 |
+| 两处输出的主要区别 |journal 输出携带更多系统元数据（进程 PID、系统字段）；syslog 文本日志格式简洁，只保留时间、主机、标签、消息正文 |
 
 保存 `imgs/lab3_dual_pipeline.png`，在同一张截图中保留 `logger` 命令、journal 和 syslog 两处查询结果，结果必须包含本人学号姓名。
 
@@ -280,15 +280,15 @@ Sep  8 10:15:32 ubuntu lab3_read[2310]: student_id=20260001 name=张三 action=w
 
 | 4W1R | 根据本人原始日志填写 |
 | :--- | :--- |
-| When 什么时候 |9 月 21 日 12:51:48；日志未标注年份、时区 |
+| When 什么时候 | 9 月 21 日 12:51:48；日志未标注年份、时区|
 | Where 在哪里 | 主机：`hcl-VMware-Virtual-Platform`|
 | Who 谁 |日志标签 `lab3_read`，进程号 5363；日志正文携带学号`2024010008`，姓名何成龙 |
 | What 做了什么 |使用`logger`命令，向本机日志系统写入一条结构化测试日志 |
-| Result 结果如何 | 日志正文标记`result=success`；journal 日志与 syslog 文本日志都检索到本条记录，日志写入成功|
+| Result 结果如何 |日志正文标记`result=success`；journal 日志与 syslog 文本日志都检索到本条记录，日志写入成功 |
 
 **用一两句话解释这个事件：**
 
-> 填写：9 月 21 日 12:51:48，用户在`hcl-VMware-Virtual-Platform`主机执行 logger 命令，写入带学号姓名的结构化测试日志，本次日志写入测试成功。
+> 填写：9月21日 12:51:48，用户在hcl-VMware-Virtual-Platform主机执行logger命令，写入带学号姓名的结构化测试日志，本次日志写入测试成功。
 
 ### 4.2 一条 SSH 认证记录：`/var/log/auth.log`
 
@@ -312,14 +312,14 @@ sudo grep -E "Accepted|Failed password|sudo" /var/log/auth.log | tail -n 30
 | 4W1R | 根据本人原始日志填写 |
 | :--- | :--- |
 | When 什么时候 |Sep 21 21:12:39 |
-| Where 在哪里 | 目标主机：hcl-VMware-Virtual-Platform，SSH 服务 22 端口；客户端源端口 60590|
+| Where 在哪里 |目标主机：hcl-VMware-Virtual-Platform，SSH 服务 22 端口；客户端源端口 60590 |
 | Who 谁 |远程客户端 IP：192.168.16.1，登录用户名：hcl |
 | What 做了什么 |SSH 密码认证，一次密码认证失败，随后一次密码认证成功 |
 | Result 结果如何 |第一次密码错误，认证失败；第二次密码正确，会话建立，登录成功 |
 
 **用一两句话解释这个事件：**
 
-> 填写：9 月 21 日 21:12:39，来自`192.168.16.1`的客户端尝试登录`hcl-VMware-Virtual-Platform`主机 hcl 账号，输入密码错误，SSH 密码认证失败。
+> 填写：9月21日 21:12:39，来自192.168.16.1的客户端尝试登录hcl-VMware-Virtual-Platform主机hcl账号，输入密码错误，SSH密码认证失败。
 
 ### 4.3 一条软件包状态记录：`/var/log/dpkg.log`
 
@@ -378,16 +378,16 @@ sudo journalctl -k -b -n 30 --no-pager
 
 | 4W1R | 根据本人原始日志填写 |
 | :--- | :--- |
-| When 什么时候 |2026 年 09 月 21 日 12:55:22；日志未标注时区 |
+| When 什么时候 | 2026 年 09 月 21 日 13:04:13；日志未标注时区|
 | Where 在哪里 | 取自 Ubuntu 虚拟机 `/var/log/dpkg.log`，主机`hcl-VMware-Virtual-Platform`|
-| Who 谁 |记录工具 dpkg；日志未记录执行操作的用户账号 |
-| What 做了什么 |记录 htop 软件包的安装状态 |
-| Result 结果如何 |`status installed`，htop 软件包成功安装 |
+| Who 谁 | 记录工具 dpkg；日志未记录执行操作的用户账号|
+| What 做了什么 | 记录 htop 软件包完整安装流程，从解压、配置到最终安装完成|
+| Result 结果如何 | `status installed`，htop 软件包（版本 3.3.0-4build1，amd64 架构）成功安装|
 
 **用一两句话解释这个事件：**
 
-> 填写：2026 年 09 月 21 日 12:55:22，dpkg 软件包管理器记录 htop 工具已成功安装在本机，架构 amd64。
-
+> 填写：
+2026 年 09 月 21 日 13:04:13，dpkg 软件包管理器记录 htop 工具完成全部安装流程，状态标记为 installed，代表 htop 成功安装到本机。
 ---
 
 ## 五、知识问答
@@ -400,9 +400,9 @@ sudo journalctl -k -b -n 30 --no-pager
 
 2. SSH 提示 `Failed password` 能证明什么，不能证明什么？请结合本次记录回答。
 
-   > 填写：1. 可以证明：有来自对应 IP 的客户端，尝试使用该账号登录，输入的密码不匹配，本次认证失败。
+   > 填写：
+可以证明：有来自对应 IP 的客户端，尝试使用该账号登录，输入的密码不匹配，本次认证失败。
 不能证明：攻击者身份、登录尝试的目的；不能证明账号是否存在，也不能证明后续会不会爆破成功，不能仅凭这一条记录判定入侵事件。
-
 ---
 
 ## 六、其他日志格式的阅读方法（选读）
