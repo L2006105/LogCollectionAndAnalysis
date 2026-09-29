@@ -148,7 +148,7 @@ local6.*                  /var/log/loglab/local6.log
 
 ```bash
 less /etc/rsyslog.conf
-```
+``
 
 `less` 是分页查看器：一次显示一屏，按空格翻页、按 `q` 退出、输入 `/关键词` 回车可以往下查找。这里不用 `cat`，是因为主配置篇幅较长，一屏一屏读更从容。
 
